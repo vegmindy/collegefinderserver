@@ -6,6 +6,10 @@ const Accepted = db.define("accepted", {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    schoolName:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     userID:{
         type: DataTypes.INTEGER,
         allowNull: false

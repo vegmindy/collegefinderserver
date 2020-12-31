@@ -12,6 +12,7 @@ app.use(require('./middleware/headers'));
 app.use('/user', controllers.userController);
 app.use('/favorites', controllers.favoritesController); 
 app.use('/accepted', controllers.acceptedController);
+app.use('/schools', controllers.schoolsController)
 
 
 db.authenticate()

@@ -8,7 +8,7 @@ const { UniqueConstraintError } = require('sequelize/lib/errors');
 
 //* REGISTER USER
 router.post('/register', async (req, res) => {
-    let {firstName, lastName, email, password, preferences} = req.body;
+    let {firstName, lastName, email, password, currentState, role} = req.body;
 
     try {
         const newUser = await User.create({
@@ -16,7 +16,8 @@ router.post('/register', async (req, res) => {
             lastName,
             email,
             password: bcrypt.hashSync(password, 13),
-            preferences: ( preferences ) ? preferences : "None"
+            currentState,
+            role
         })
         const token = jwt.sign({id: newUser.id}, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})
         res.status(201).json({

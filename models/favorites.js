@@ -2,10 +2,10 @@ const {DataTypes} = require("sequelize");
 const db = require("../db");
 
 const Favorites = db.define("favorites", {
-    schoolID: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
+    // schoolID: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // },
     schoolName:{
         type: DataTypes.STRING,
         allowNull: false
@@ -21,6 +21,10 @@ const Favorites = db.define("favorites", {
     notes: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    userID: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 })
 
