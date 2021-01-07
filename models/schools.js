@@ -2,6 +2,11 @@ const {DataTypes} = require("sequelize");
 const db = require("../db");
 
 const Schools = db.define("schools", {
+    id:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+    },
     schoolName:{
         type: DataTypes.STRING,
         allowNull: false

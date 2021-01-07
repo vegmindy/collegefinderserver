@@ -12,8 +12,9 @@ router.get("/byuser", validateSession, (req, res) => {
 })
 
 router.post("/addschool", validateSession, async (req, res) => {
-    const { schoolName, address, inState, pros, cons, notes, top } = req.body;
+    const { schoolName, address, inState, pros, cons, notes, top, accepted } = req.body;
     try{
+        console.log()
         let newAccepted = await Accepted.create({
             schoolName,
             address,
@@ -23,7 +24,8 @@ router.post("/addschool", validateSession, async (req, res) => {
             notes,
             top,
             userID: req.user.id,
-            schoolID: req.favorites.id
+            // id: req.schools.id,
+            accepted
         });
         
         res.status(200).json({
@@ -36,28 +38,28 @@ router.post("/addschool", validateSession, async (req, res) => {
     }
 });
 
-router.put('/updateschool/:id', (req, res) => {
+router.put('/updateschool/:id', validateSession, (req, res) => {
     console.log(req.body)
     const query = req.params.id;
-    Favorites.update(req.body, {where: {id: query}})
-    .then(favoritesUpdated => {
-        Favorites.findOne({where: {id: query}})
-        .then(locatedUpdatedFavorites => {
+    Accepted.update(req.body, {where: {id: query}})
+    .then(acceptedUpdated => {
+        Accepted.findOne({where: {id: query}})
+        .then(locatedUpdatedAccepted => {
             res.status(200).json({
-                review: locatedUpdatedFavorites,
+                review: locatedUpdatedAccepted,
                 message: 'School has been updated',
-                favoritesChanged: favoritesUpdated
+                acceptedChanged: acceptedUpdated
             })
         })
     })
 })
 
-router.delete('/delete/', (req, res) => {
-    Favorites.destroy({
-        where: { id: req.body.id}
-    })
-    .then(log => res.status(200).json(log))
-    .catch(err => res.json({error: err}))
-})
+router.delete('/delete/:id', validateSession, function (req, res) {
+    const query = { where: {id: req.params.id }};
+
+    Accepted.destroy(query)
+        .then(() => res.status(200).json({ message: 'School deleted'}))
+        .catch((err) => res.status(500).json ({ error: err }));
+});
 
 module.exports = router;

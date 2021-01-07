@@ -2,13 +2,16 @@ const {DataTypes} = require("sequelize");
 const db = require("../db");
 
 const Accepted = db.define("accepted", {
-    schoolID: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
+    // schoolID: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // },
     schoolName:{
         type: DataTypes.STRING,
         allowNull: false
+    },
+    address:{
+        type: DataTypes.STRING,
     },
     userID:{
         type: DataTypes.INTEGER,
@@ -18,7 +21,7 @@ const Accepted = db.define("accepted", {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
-    Accepted: {
+    accepted: {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },

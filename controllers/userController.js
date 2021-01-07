@@ -7,7 +7,7 @@ const { UniqueConstraintError } = require('sequelize/lib/errors');
 
 
 //* REGISTER USER
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
     let {firstName, lastName, email, password, currentState, role} = req.body;
 
     try {

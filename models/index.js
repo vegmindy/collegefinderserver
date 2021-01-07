@@ -3,15 +3,14 @@ const Favorites = require('./favorites');
 const User = require('./user');
 const Schools = require('./schools')
 
-// // one to one
-// User.hasOne(Account)
-// Account.belongsTo(User)
 
-// // one to many
-// User.hasMany(Accepted)
-// Accepted.belongsTo(User)
 
-// User.hasMany(Favorites)
-// Favorites.belongsTo(User)
+User.hasMany(Favorites);
+Favorites.belongsTo(User);
+
+Accepted.belongsTo(User);
+Favorites.belongsTo(Accepted);
+
+User.hasMany(Accepted);
 
 module.exports = {Accepted, Favorites, User, Schools}
