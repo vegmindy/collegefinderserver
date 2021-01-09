@@ -10,9 +10,9 @@ const { findOne } = require('../models/user');
 //     .catch(err => res.status(500).json(err))
 // });
 
-router.get("/byuser", validateSession, (req, res) => {
-    let ownerid = req.user.id
-    Favorites.findAll({where: {userID: ownerid}})
+router.get("/myfavorites", validateSession, (req, res) => {
+    let userid = req.user.id
+    Favorites.findAll({where: {user: userid}})
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json({error: err}))
 })

@@ -4,12 +4,20 @@ const{Accepted} = require('../models/index');
 const validateSession = require('../middleware/validateSession');
 
 
-router.get("/byuser", validateSession, (req, res) => {
-    let ownerid = req.user.id
-    Accepted.findAll({where: {userID: ownerid}})
+// router.get("/byuser", validateSession, (req, res) => {
+//     let ownerid = req.user.id
+//     Accepted.findAll({where: {userID: ownerid}})
+//     .then(data => res.status(200).json(data))
+//     .catch(err => res.status(500).json({error: err}))
+// })
+
+router.get("/myaccepted", validateSession, (req, res) => {
+    let userid = req.user.id
+    Favorites.findAll({where: {user: userid}})
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json({error: err}))
 })
+
 
 router.post("/addschool", validateSession, async (req, res) => {
     const { schoolName, address, inState, pros, cons, notes, top, accepted } = req.body;

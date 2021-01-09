@@ -16,10 +16,10 @@ const validateSession = (req, res, next) => {
                 where: {id: payload.id} // this finds user whose id matches the id that was assigned upon login
             })
             .then(user => {
-                console.log("REQUEST BEFORE", req.user)
+                // console.log("REQUEST BEFORE", req.user)
                 req.user = user;
                 // this creates a user object inside of my request object. This object stores the date we grabbed from the user table in the database
-                console.log("REQUEST AFTER", req.user)
+                // console.log("REQUEST AFTER", req.user)
                 next() // next jumps out of the callback function. We use this to stop triggering the callback function a second time
             })
         } else{

@@ -22,11 +22,11 @@ const Favorites = db.define("favorites", {
     notes: {
         type: DataTypes.STRING,
         allowNull: true
-    },
-    userID: {
-        type: DataTypes.INTEGER,
-        allowNull: false
     }
+    // userID: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false
+    // }
 })
 
 module.exports = Favorites
