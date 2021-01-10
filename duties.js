@@ -1,7 +1,7 @@
 const AccessControl = require('access-control');
 const ac = new AccessControl();
 
-ac.grant('student')
+ac.grant('user')
         .createOwn('favorites')
         .createOwn('accepted')
         .updateOwn('favorites')
