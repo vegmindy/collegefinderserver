@@ -16,7 +16,7 @@ const Favorites = db.define("favorites", {
         allowNull: false
     },
     inState: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false
     },
     notes: {

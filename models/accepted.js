@@ -18,11 +18,11 @@ const Accepted = db.define("accepted", {
     //     allowNull: false
     // },
     inState: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false
     },
     accepted: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false
     },
     pros: {

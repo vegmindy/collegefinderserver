@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const{Favorites} = require('../models/index');
+const{Favorites} = require('../models');
 const validateSession = require('../middleware/validateSession');
 const { findOne } = require('../models/user');
 

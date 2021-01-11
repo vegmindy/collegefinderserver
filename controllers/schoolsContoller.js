@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const{Schools} = require('../models/index');
+const{Schools} = require('../models');
 const validateSession = require('../middleware/validateSession');
 const { findOne } = require('../models/user');
 

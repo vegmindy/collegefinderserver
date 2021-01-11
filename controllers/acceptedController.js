@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const{Accepted} = require('../models/index');
+const{Accepted} = require('../models');
 const validateSession = require('../middleware/validateSession');
 
 
