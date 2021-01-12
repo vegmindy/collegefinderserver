@@ -10,9 +10,10 @@ app.use(require('./middleware/headers'));
 
 
 app.use('/user', controllers.userController);
-app.use('/favorites', validateSession, controllers.favoritesController); 
-app.use('/accepted', validateSession, controllers.acceptedController);
-app.use('/schools', validateSession, controllers.schoolsController)
+app.use(require('./middleware/validateSession'));
+app.use('/favorites', controllers.favoritesController); 
+app.use('/accepted', controllers.acceptedController);
+app.use('/schools', controllers.schoolsController)
 
 
 db.authenticate()

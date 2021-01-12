@@ -5,10 +5,10 @@ const {User} = require('../models');
 const validateSession = (req, res, next) => {
     if (req.method === 'OPTIONS') {
         return next ();
-    } else if (req.headers.authorization && req.headers.authorization.includes('Bearer')) {
+    } else if (req.headers.authorization) {
         const {authorization} = req.headers;
 
-        const payload = authorization ? jwt.verify(authorization.includes('Bearer') ? authorization.split(' ')[1] : authorization, process.env.JWT_SECRET): undefined;
+        const payload = authorization ? jwt.verify(authorization, process.env.JWT_SECRET) : undefined;
         console.log(payload);
 
         if(payload){

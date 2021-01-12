@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const{Accepted} = require('../models');
+const{Accepted} = require('../models/index');
 const validateSession = require('../middleware/validateSession');
 
 
@@ -11,7 +11,7 @@ const validateSession = require('../middleware/validateSession');
 //     .catch(err => res.status(500).json({error: err}))
 // })
 
-router.get("/myaccepted", validateSession, (req, res) => {
+router.get("/myaccepted", (req, res) => {
     let userid = req.user.id
     Favorites.findAll({where: {user: userid}})
     .then(data => res.status(200).json(data))
@@ -19,7 +19,7 @@ router.get("/myaccepted", validateSession, (req, res) => {
 })
 
 
-router.post("/addschool", validateSession, async (req, res) => {
+router.post("/addschool", async (req, res) => {
     const { schoolName, address, inState, pros, cons, notes, top, accepted } = req.body;
     try{
         console.log()
@@ -46,7 +46,7 @@ router.post("/addschool", validateSession, async (req, res) => {
     }
 });
 
-router.put('/updateschool/:id', validateSession, (req, res) => {
+router.put('/updateschool/:id', (req, res) => {
     console.log(req.body)
     const query = req.params.id;
     Accepted.update(req.body, {where: {id: query}})
@@ -62,7 +62,7 @@ router.put('/updateschool/:id', validateSession, (req, res) => {
     })
 })
 
-router.delete('/delete/:id', validateSession, function (req, res) {
+router.delete('/delete/:id', function (req, res) {
     const query = { where: {id: req.params.id }};
 
     Accepted.destroy(query)
