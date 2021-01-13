@@ -13,10 +13,10 @@ const Accepted = db.define("accepted", {
     address:{
         type: DataTypes.STRING,
     },
-    // userID:{
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    // },
+    userID:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     inState: {
         type: DataTypes.STRING,
         allowNull: false

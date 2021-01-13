@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const{Accepted} = require('../models/index');
 const validateSession = require('../middleware/validateSession');
+const jwt = require('jsonwebtoken');
+
 
 
 // router.get("/byuser", validateSession, (req, res) => {
@@ -11,9 +13,18 @@ const validateSession = require('../middleware/validateSession');
 //     .catch(err => res.status(500).json({error: err}))
 // })
 
-router.get("/myaccepted", (req, res) => {
-    let userid = req.user.id
-    Favorites.findAll({where: {user: userid}})
+
+
+router.get("/myaccepted", validateSession, async (req, res) => {
+    // console.log(req.accepted)
+    // const {authorization} = req.headers;
+
+    //     const payload = authorization ? jwt.verify(authorization, process.env.JWT_SECRET) : undefined;
+    //     console.log(payload);
+
+    // let userid = payload.id
+    let userid= req.user.id;
+    Accepted.findAll({where: {userID: userid}})
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json({error: err}))
 })
