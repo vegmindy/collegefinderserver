@@ -31,7 +31,7 @@ router.get("/myaccepted", validateSession, async (req, res) => {
 
 
 router.post("/addschool", async (req, res) => {
-    const { schoolName, address, inState, pros, cons, notes, top, accepted } = req.body;
+    const { schoolName, address, inState, pros, cons, notes, accepted } = req.body;
     try{
         console.log()
         let newAccepted = await Accepted.create({
@@ -41,7 +41,6 @@ router.post("/addschool", async (req, res) => {
             pros,
             cons,
             notes,
-            top,
             userID: req.user.id,
             // id: req.schools.id,
             accepted

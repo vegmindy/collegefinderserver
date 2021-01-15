@@ -12,7 +12,7 @@ const { findOne } = require('../models/user');
 
 router.get("/myfavorites", validateSession, (req, res) => {
     let userid = req.user.id
-    Favorites.findAll({where: {user: userid}})
+    Favorites.findAll({where: {userID: userid}})
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json({error: err}))
 })
